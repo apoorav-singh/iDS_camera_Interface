@@ -18,6 +18,7 @@ def time_v(): return time.strftime("%H_%M_%S")
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 # Folder and Path Management
 # -------------------------------------------------------------------------------------------------------------------------------------------------
+path_og = os.getcwd() + "/pot.png"
 
 def latest_file(path_aft):
     list_of_files = glob.glob(os.getcwd()+"/"+path_aft+"/*") # * means all 
@@ -25,6 +26,7 @@ def latest_file(path_aft):
         return []
     else:
         return max(list_of_files, key=os.path.getctime)
+
 
 # ------------------------------------------------------
 dir_list = os.listdir()
@@ -51,7 +53,7 @@ elif (file_found == 1):
     print('No Saved Directory found')
     os.mkdir("Saved")
     os.mkdir("Saved/Clicked")
-    os.mkdir("Saved/Substracted")
+    os.mkdir("Saved/Subtracted")
     print('Directory successfully created')
 
 elif (file_found == 0):
@@ -59,9 +61,10 @@ elif (file_found == 0):
     os.mkdir("Reference")
     os.mkdir("Saved")
     os.mkdir("Saved/Clicked")
-    os.mkdir("Saved/Substracted")
+    os.mkdir("Saved/Subtracted")
     print('Directory(ies) successfully created')
-
+elif (file_found == 3):
+    print("All Files are present")
 else:
     print("Inconsistent Files: May be multiple directories with the same name.")
 
@@ -76,20 +79,22 @@ dir_list = os.listdir()
 
 if (len(dir_list) == 0):
     os.mkdir(date_v)
-
-for i in dir_list:
-    if (i == date_v):
-        file_found += 1
-        break
+    shutil.copy2(path_og, date_v)
+else:
+    for i in dir_list:
+        if (i == date_v):
+            file_found = 1
+            break
         
-    else:
-        print("Directory not found")
+        else:
+            print("Directory not found")
         
 
-if (file_found == 0):
-    print("Files was not found")
-    os.mkdir(date_v)
-    print("Files were created")
+    if (file_found == 0):
+        print("Files was not found")
+        os.mkdir(date_v)
+        shutil.copy2(path_og, date_v)
+        print("Files were created")
 
 
 # ------------------------------------------------------
@@ -102,46 +107,22 @@ dir_list = os.listdir()
 
 if (len(dir_list) == 0):
     os.mkdir(date_v)
-
-for i in dir_list:
-    if (i == date_v):
-        file_found += 1
-        break
+    shutil.copy2(path_og, date_v)
+else:
+    for i in dir_list:
+        if (i == date_v):
+            file_found = 1
+            break
         
-    else:
-        print("Directory not found")
-        
-
-if (file_found == 0):
-    print("Files was not found")
-    os.mkdir(date_v)
-    print("Files were created")
-
-# ------------------------------------------------------
-
-file_found = 0
-
-os.chdir("..")
-os.chdir("..")
-os.chdir("Saved/Comparison")
-dir_list = os.listdir()
-
-if (len(dir_list) == 0):
-    os.mkdir(date_v)
-
-for i in dir_list:
-    if (i == date_v):
-        file_found += 1
-        break
-        
-    else:
-        print("Directory not found")
+        else:
+            print("Directory not found")
         
 
-if (file_found == 0):
-    print("Files was not found")
-    os.mkdir(date_v)
-    print("Files were created")
+    if (file_found == 0):
+        print("File was not found")
+        os.mkdir(date_v)
+        shutil.copy2(path_og, date_v)
+        print("Files were created")
 
 # ------------------------------------------------------
     
@@ -154,21 +135,22 @@ dir_list = os.listdir()
 
 if (len(dir_list) == 0):
     os.mkdir(date_v)
-
-for i in dir_list:
-    if (i == date_v):
-        file_found += 1
-        break
+    shutil.copy2(path_og, date_v)
+else:
+    for i in dir_list:
+        if (i == date_v):
+            file_found = 1
+            break
         
-    else:
-        print("Directory not found")
+        else:
+            print("Directory not found")
         
 
-if (file_found == 0):
-    print("Files was not found")
-    os.mkdir(date_v)
-    shutil.copy2('pot.png', 'Reference/'+date_v+"/")
-    print("Files were created")
+    if (file_found == 0):
+        print("Files was not found")
+        os.mkdir(date_v)
+        shutil.copy2(path_og, date_v)
+        print("Files were created")
     
 file_found = 0
 
